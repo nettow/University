@@ -1,9 +1,7 @@
 import java.util.Scanner;
 public class Exercicio1 {
-
 	public static void main(String[] args) {
 	      Scanner sc = new  Scanner(System.in);
-	      
 	      for(int i=0;i<10;i++){
 	         System.out.println("Retangulo numero " + (i+1));
 	         System.out.println("Digite a base: ");
@@ -16,5 +14,4 @@ public class Exercicio1 {
 	         System.out.println("Perimetro: " + perimetro + "\n");
 	      }
 	}
-
 }
