@@ -1,2 +1,2 @@
 # University
-Exercises made at university
+projects made for college
