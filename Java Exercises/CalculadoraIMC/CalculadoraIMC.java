@@ -19,7 +19,7 @@ public class CalculadoraIMC {
 	}
 	
 	public static void main(String[] args) {
-		CalculadoraIMC calcImc = new CalculadoraIMC(70,1.70);
+		CalculadoraIMC calcImc = new CalculadoraIMC(70,1.70); // valores
 			calcImc.calcular();
 			
 			System.out.println("O IMC eh: " + calcImc.getImc());
