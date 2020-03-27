@@ -5,8 +5,7 @@ class FibonacciRecursivo{
         Scanner sc = new Scanner(System.in);
         System.out.print("Digite o n-esimo termo de fibonnaci: ");
         int fib = sc.nextInt();
-        System.out.println("O " + fib + " termo de fibonaccié igual a: " + fibonnaciIterativo (fib));
-        System.out.println(fibonnaciRecursivo(fib));  
+        System.out.println("O " + fib + " termo de fibonaccié igual a: " + fibonnaciRecursivo(fib));
     }
 
     private static int fibonnaciRecursivo(int n){
