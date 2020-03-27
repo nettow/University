@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class CalculadoraIMC {
 	private double peso, altura, imc;
 	
@@ -19,7 +21,13 @@ public class CalculadoraIMC {
 	}
 	
 	public static void main(String[] args) {
-		CalculadoraIMC calcImc = new CalculadoraIMC(70,1.70); // valores
+		float altura;
+		float peso;
+		System.out.print("Digite a altura: ");
+		altura = sc.nextFloat();
+		System.out.print("Digite o peso: ");
+		peso = sc.nextFloat();
+		CalculadoraIMC calcImc = new CalculadoraIMC(peso,altura); // valores
 			calcImc.calcular();
 			
 			System.out.println("O IMC eh: " + calcImc.getImc());
@@ -28,8 +36,4 @@ public class CalculadoraIMC {
 				System.out.println("Tem sobrepeso.");
 			}
 		}
-}
-
-public static void main(String[] args){
-	System.out.println("hah");
 }
