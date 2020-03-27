@@ -21,6 +21,7 @@ public class CalculadoraIMC {
 	}
 	
 	public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 		float altura;
 		float peso;
 		System.out.print("Digite a altura: ");
