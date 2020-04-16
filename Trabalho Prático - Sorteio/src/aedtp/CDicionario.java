@@ -1,6 +1,6 @@
-package src;
+package aedtp;
 
-class CDicionario {
+public class CDicionario {
     private CCelulaDicionario primeira;
     private CCelulaDicionario ultima;
 
@@ -13,33 +13,35 @@ class CDicionario {
         return primeira == ultima;
     }
 
-    public void adiciona(Object chave, Object valor) {
+    public void adicionaMorador(Object chave, Object valor) {
         ultima.prox = new CCelulaDicionario(chave, valor);
         ultima = ultima.prox;
     }
 
-    public Object procuraValor(Object chave) {
+    public Object procuraChave(Object chave) {
         CCelulaDicionario aux = primeira.prox;
         boolean achou = false;
 
         while (aux != null && !achou){
-            if (achou = aux.equals(chave)){
+            if (achou = aux.key.equals(chave)){
                 achou = true;
                 return aux;
             }
             aux = aux.prox; 
         }
-        return achou;
+        return "Não encontrado.\n";
     }
+
+    public void imprimeFor() {
+        for (CCelulaDicionario aux = primeira.prox; aux != null; aux = aux.prox)
+           System.out.print("Value: " + aux.value + "Key: " + aux.key + " ---> ");   		
+     }
+     
+
     public boolean procuraValorFor(Object elemento) {
         boolean achou = false;
         for (CCelulaDicionario aux = primeira.prox; aux != null && !achou; aux = aux.prox)
            achou = aux.value.equals(elemento);
         return achou;
-     }
-
-    public void imprimeFor() {
-        for (CCelulaDicionario aux = primeira.prox; aux != null; aux = aux.prox)
-           System.out.print(aux.value + " " + aux.key + " .. ");   		
      }
 }

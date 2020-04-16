@@ -1,12 +1,7 @@
- /**
- * @(#)CCelula.java
- *
- *
- * @author Rodrigo Richard Gomes
- * @version 1.00 2018/3/16
- */
-package src;
+package aedtp;
+
 public class CCelula {
+
 	public Object item;
 	public CCelula prox;    	
     public CCelula(Object valorItem, CCelula proxCelula)
@@ -23,5 +18,5 @@ public class CCelula {
     {
     	item = null;
         prox = null;
-    }    			        	
+    }    
 }

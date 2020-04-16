@@ -1,11 +1,11 @@
-package src;
-// Fornecido por Rodrigo Richard Gomes
-class CCelulaDicionario {
+package aedtp;
+//Fornecido por Rodrigo Richard Gomes
+public class CCelulaDicionario {
     // Atributos
     public Object key, value;
     public CCelulaDicionario prox;
 
-    // Construtora que anula os trÃªs atributos da cÃ©lula
+    // Construtora que anula os três atributos da célula
     public CCelulaDicionario() {
         key = null;
         value = null;
@@ -13,15 +13,15 @@ class CCelulaDicionario {
     }
 
     // Construtora que inicializa key e value com os argumentos passados
-    // por parÃ¢metro e anula a referÃªncia Ã  prÃ³xima cÃ©lula
+    // por parâmetro e anula a referência à próxima célula
     public CCelulaDicionario(Object chave, Object valor) {
         key = chave;
         value = valor;
         prox = null;
     }
 
-    // Construtora que inicializa todos os atribulos da cÃ©lula com os argumentos
-    // passados por parÃ¢metro
+    // Construtora que inicializa todos os atribulos da célula com os argumentos
+    // passados por parâmetro
     public CCelulaDicionario(Object chave, Object valor, CCelulaDicionario proxima) {
         key = chave;
         value = valor;
