@@ -9,39 +9,61 @@ public class CDicionario {
         ultima = primeira;
     }
 
-    public boolean vazio() {
-        return primeira == ultima;
-    }
-
     public void adicionaMorador(Object chave, Object valor) {
         ultima.prox = new CCelulaDicionario(chave, valor);
         ultima = ultima.prox;
+	}
+	
+    public void procuraCpf(String cpf) {
+    	String[] data;
+    	for (CCelulaDicionario aux = primeira.prox; aux != null; aux = aux.prox) {
+    		data = (String[]) aux.value;
+    		if(cpf.equals(data[1])) {
+    			System.out.println("CPF: " + data[1] + "    NOME: " + data[0] + "\nQtde Dependentes: " + data[5] + " - Renda familiar: " + data[4] +  "\nTelefone: " + data[4] + "\nEndereco: " + data[3]);
+    			return;
+    		}
+    	}
+    	System.out.println("Usuï¿½rio nï¿½o existe!");
     }
 
-    public Object procuraChave(Object chave) {
-        CCelulaDicionario aux = primeira.prox;
-        boolean achou = false;
-
-        while (aux != null && !achou){
-            if (achou = aux.key.equals(chave)){
-                achou = true;
-                return aux;
-            }
-            aux = aux.prox; 
+    public void imprimirListagemSimples() {
+        String[] data; // String[] data = {this.getNome(),this.getCpf(),this.getTelefone(),this.getEndereco(),rendaStr,dependentesStr,faixaStr,isEsperaStr};
+        System.out.println("LISTAGEM DE MORADORES\n================================\nFAIXA 1\n");
+        
+    	for (CCelulaDicionario aux = primeira.prox; aux != null; aux = aux.prox) {
+    		data = (String[]) aux.value;
+    		if ("1".equals(data[6])) {
+    			System.out.println("CPF: " + data[1] + " - NOME: " + data[0] + "- Renda familiar:" + data[4] + "\n");
+    		}
+    	}
+        System.out.println("================================\nFAIXA 2\n");
+    	for (CCelulaDicionario aux = primeira.prox; aux != null; aux = aux.prox) {
+    		data = (String[]) aux.value;
+    		if ("2".equals(data[6])) {
+    			System.out.println("CPF: " + data[1] + " - NOME: " + data[0] + " Faixa:" + data[6] + "\n");
+    		}
+    	}
+    	
+    	
+    }
+    
+    public void imprimirListagemCompleta() {
+        String[] data;
+        System.out.println("LISTAGEM DE MORADORES\n================================\r\nFAIXA 1");
+    	for (CCelulaDicionario aux = primeira.prox; aux != null; aux = aux.prox) {
+    		data = (String[]) aux.value;
+    		if ("1".equals(data[6])) {
+    			// 		String[] data = {this.getNome(),this.getCpf(),this.getTelefone(),this.getEndereco(),rendaStr,dependentesStr,faixaStr,isEsperaStr};
+    			System.out.println("CPF: " + data[1] + "    NOME: " + data[0] + "\nQtde Dependentes: " + data[5] + " - Renda familiar: " + data[4] +  "\nTelefone: " + data[4] + "\nEndereco: " + data[3]);
+    		}
         }
-        return "Não encontrado.\n";
+        System.out.println("================================\r\nFAIXA 2");
+    	for (CCelulaDicionario aux = primeira.prox; aux != null; aux = aux.prox) {
+    		data = (String[]) aux.value;
+    		if ("2".equals(data[6])) {
+    			// 		String[] data = {this.getNome(),this.getCpf(),this.getTelefone(),this.getEndereco(),rendaStr,dependentesStr,faixaStr,isEsperaStr};
+    			System.out.println("CPF: " + data[1] + "    NOME: " + data[0] + "\nQtde Dependentes: " + data[5] + " - Renda familiar: " + data[4] +  "\nTelefone: " + data[4] + "\nEndereco: " + data[3]);
+    		}
+        }
     }
-
-    public void imprimeFor() {
-        for (CCelulaDicionario aux = primeira.prox; aux != null; aux = aux.prox)
-           System.out.print("Value: " + aux.value + "Key: " + aux.key + " ---> ");   		
-     }
-     
-
-    public boolean procuraValorFor(Object elemento) {
-        boolean achou = false;
-        for (CCelulaDicionario aux = primeira.prox; aux != null && !achou; aux = aux.prox)
-           achou = aux.value.equals(elemento);
-        return achou;
-     }
 }
