@@ -43,8 +43,6 @@ public class CDicionario {
     			System.out.println("CPF: " + data[1] + " - NOME: " + data[0] + " Faixa:" + data[6] + "\n");
     		}
     	}
-    	
-    	
     }
     
     public void imprimirListagemCompleta() {
