@@ -11,13 +11,13 @@ public class Morador {
 	private int dependentes;
 	private int faixa;
 	private boolean espera;
+	private boolean excluido;
 
 	private int qtdFaixa1 = 0, qtdFaixa2 = 0, qtdEspera = 0;
 	private int maxFaixa1,maxFaixa2,maxFilaEspera;
 	private float salarioMinimo;
 	
 	private CDicionario save = new CDicionario();
-	
 	public Morador(float salarioMinimo, int faixa1, int faixa2, int filaEspera) {
 		this.salarioMinimo = salarioMinimo;
 		this.maxFaixa1 = faixa1;
@@ -56,7 +56,7 @@ public class Morador {
 		this.setDependentes(dependentes);
 		if (this.getRenda() < this.getSalarioMinimo()) // renda < salario minimo
 			this.setFaixa(1);
-		else if (this.getRenda() > this.getSalarioMinimo() && this.getRenda() < this.getSalarioMinimo() * 3)//  renda > salario minimo & renda < salario minimo * 3
+		else if (this.getRenda() > this.getSalarioMinimo() && this.getRenda() < this.getSalarioMinimo() * 3)//  renda > salario minimo && renda < salario minimo * 3
 			this.setFaixa(2);
 		else {
 			System.out.println("Renda inválida para os parametros do sorteio!");
@@ -66,27 +66,52 @@ public class Morador {
 	}
 	
 	public void salvaMorador() {
-		if (this.getFaixa() == 1 && qtdFaixa1 < maxFaixa1) { // Morador é faixa 1 ? tem espaço na faixa 2?
+		if (this.getFaixa() == 1 && qtdFaixa1 < maxFaixa1) { // Morador é faixa 1 ? tem espaço na faixa 1?
 			this.setEspera(false);
 			this.setQtdFaixa1(this.getQtdFaixa1() + 1);
-			System.out.println("Morador " + this.getNome() + " cadastrado na faixa 1");
+			System.out.println("\nMorador " + this.getNome() + " cadastrado na faixa 1");
 		} else if (this.getFaixa() == 2 && qtdFaixa2 < maxFaixa2) {// Morador é faixa 2? tem espaço na faixa 2 ?
 			this.setEspera(false);
 			this.setQtdFaixa2(this.getQtdFaixa2() + 1);
-			System.out.println("Morador " + this.getNome() + " cadastrado na faixa 2!");
+			System.out.println("\nMorador " + this.getNome() + " cadastrado na faixa 2!");
 		} else {
 			this.setEspera(true);
 			this.setQtdEspera(this.getQtdEspera() + 1);
-			System.out.println("Morador " + this.getNome() + " cadastrado na lista de espera!");
+			System.out.println("\nMorador " + this.getNome() + " cadastrado na lista de espera!");
 		}
 		// Converti alguns dados para STRING para poder salvar no dicionario um array de strings
 		String rendaStr = Float.toString(this.getRenda()); 
 		String dependentesStr = Integer.toString(this.getDependentes());
 		String faixaStr = Integer.toString(this.getFaixa());
 		String isEsperaStr = Boolean.toString(this.isEspera());
- 		String[] data = {this.getNome(),this.getCpf(),this.getTelefone(),this.getEndereco(),rendaStr,dependentesStr,faixaStr,isEsperaStr};
+		this.setExcluido(false);
+		String isExcluidoStr = Boolean.toString(this.isExcluido());
+		
+ 		String[] data = {this.getNome(),this.getCpf(),this.getTelefone(),this.getEndereco(),rendaStr,dependentesStr,faixaStr,isEsperaStr,isExcluidoStr};
+ 		
 		//salva os dados como array de strings no dicionario, a chave é o cpf do morador.
  		save.adicionaMorador(this.getCpf(), data);
+ 		if (this.isEspera()) {
+ 			save.adicionaEspera(this.getCpf());
+ 		}
+	}
+	
+	public void deletarMorador() {
+		String cpf = retornarCpf();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Deseja mesmo excluir esse morador? (sim/nao): ");
+		String decisao = sc.nextLine();
+		if ("sim".equals(decisao)) {
+			String faixa = save.excluirMorador(cpf);
+			if ("1".equals(faixa)) {
+				this.setQtdFaixa1(this.getQtdFaixa1() -1);
+			} else if ("2".equals(faixa)) {
+				this.setQtdFaixa2(this.getQtdFaixa2() -1);
+			}
+		} else if("nao".equals(decisao)) {
+			System.out.println("Morador não foi deletado.");
+		} else
+			System.out.println("Opção inválida.\n Morador não foi deletado !");
 	}
 	
 	public void procurarCpf() {
@@ -94,6 +119,14 @@ public class Morador {
 		String cpf = sc.nextLine();
 		save.procuraCpf(cpf);
 	}
+	
+	public String retornarCpf() {
+		Scanner sc = new Scanner(System.in);
+		String cpf = sc.nextLine();
+		save.procuraCpf(cpf);
+		return cpf;
+	}
+	
 	public void imprimirLista() {
 		save.imprimirListagemSimples();
 	}
@@ -101,6 +134,16 @@ public class Morador {
 	public void imprimirListaCompleta() {
 		save.imprimirListagemCompleta();
 	}
+	
+	// Getters e Setters
+	public boolean isExcluido() {
+		return excluido;
+	}
+
+	public void setExcluido(boolean excluido) {
+		this.excluido = excluido;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
