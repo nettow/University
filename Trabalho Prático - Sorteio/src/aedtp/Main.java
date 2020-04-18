@@ -21,7 +21,7 @@ public class Main {
 		
 		int option;
 		do {
-			System.out.println("Menu aqui .. ");
+			menu();
 			option = sc.nextInt();
 			switch (option) {
 				case 1: m.dadosMorador(); 
@@ -30,9 +30,26 @@ public class Main {
 				break;
 				case 3: m.imprimirListaCompleta();
 				break;
-				case 4: m.procurarCpf();
+				case 4: System.out.println("falta fazer");
+					break;
+				case 5:	System.out.print("Digite o CPF do morador (ex: 100200300789): "); 
+						m.procurarCpf();
+				break;
+				case 6: System.out.print("Digite o CPF do morador (ex: 100200300789): ");
+						m.deletarMorador();
+				break;
 			}
 		}while(option != 9);
 	}
-
+	
+	public static void menu() {
+		System.out.println("\nMENU");
+		System.out.println("[1] Cadastrar Morador");
+		System.out.println("[2] Ver Moradores (Simples)");
+		System.out.println("[3] Ver Moradores (Completo)");
+		System.out.println("[4] Ver Lista de espera");
+		System.out.println("[5] Procurar Morador por CPF");
+		System.out.println("[6] Deletador morador");
+		System.out.println("[7] Sorteio");		
+	}
 }
