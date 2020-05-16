@@ -12,14 +12,14 @@ public class CDicionario {
 		ultima = ultima.prox;
 	}
 
-	public Object get(Object cpf) {
+	public Object get(Object key) {
 
 		for (CCelulaDicionario aux = primeira.prox; aux != null; aux = aux.prox) {
-			if (cpf.equals(aux.chave)) {
+			if (key.equals(aux.chave)) {
 				return aux.valor;
 			}
 		}
-		return cpf;
+		return key;
 	}
 
 	public void print(){
