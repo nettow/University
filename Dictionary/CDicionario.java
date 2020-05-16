@@ -15,16 +15,21 @@ public class CDicionario {
 	public Object get(Object key) {
 
 		for (CCelulaDicionario aux = primeira.prox; aux != null; aux = aux.prox) {
-			if (key.equals(aux.chave)) {
+			if (key.equals(aux.chave))
 				return aux.valor;
-			}
 		}
 		return key;
 	}
 
 	public void print(){
-        for (CCelulaDicionario aux = primeira.prox; aux != null; aux = aux.prox) {
-			System.out.println(aux.chave +"\n");
-        }
-    }
+        for (CCelulaDicionario aux = primeira.prox; aux != null; aux = aux.prox)
+			System.out.println("  Partido " +aux.chave);
+	}
+
+	public void printEstado(String estado){
+		for (CCelulaDicionario aux = primeira.prox; aux != null; aux = aux.prox)
+			if (estado == aux.chave)
+			System.out.println("Estado " + aux.chave);
+	}
+
 }

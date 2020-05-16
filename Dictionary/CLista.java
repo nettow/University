@@ -19,16 +19,19 @@ public class CLista {
 
    public void print() {
        for (CCelula aux = primeira.prox; aux != null; aux = aux.prox)
-           System.out.print("       " + aux.item + "\n");
+           System.out.print("    Deputado " + aux.item + "\n");
+        System.out.println();
    }
 
    public Object retornaDeputados(String partido) {
        for (CCelula aux = primeira.prox; aux != null; aux = aux.prox) {
-
+        // NOTHING YET
        }
        
-       return "null";
+       return "NOTHING YET";
    }
+
+   
    public boolean contem(Object elemento) {
        boolean achou = false;
        for (CCelula aux = primeira.prox; aux != null && !achou; aux = aux.prox)
