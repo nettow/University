@@ -22,7 +22,7 @@ public class CDicionario {
 		return cpf;
 	}
 
-	public void print(Object valor){
+	public void print(){
         for (CCelulaDicionario aux = primeira.prox; aux != null; aux = aux.prox) {
 			System.out.println(aux.chave +"\n");
         }
