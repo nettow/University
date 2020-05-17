@@ -4,7 +4,6 @@ public class CLista {
 
    private CCelula primeira;
    private CCelula ultima;
-   private int qtde;
 
    public CLista() {
        primeira = new CCelula();
@@ -14,7 +13,6 @@ public class CLista {
    public void add(Object valorItem) {
        ultima.prox = new CCelula(valorItem);
        ultima = ultima.prox;
-       qtde++;
    }
 
    public void print() {
@@ -30,17 +28,4 @@ public class CLista {
        
        return "NOTHING YET";
    }
-
-   
-   public boolean contem(Object elemento) {
-       boolean achou = false;
-       for (CCelula aux = primeira.prox; aux != null && !achou; aux = aux.prox)
-           achou = aux.item.equals(elemento);
-       return achou;
-   }
-
-   public int quantidade() {
-       return qtde;
-   }
-
 }

@@ -1,61 +1,55 @@
 public class Aplicacao {
     public static void main(String[] args){
+        String[] estados = {"MG","SP","RJ"};
+
         CDicionario dicionario = new CDicionario();
-        
+
+        // Cria partidos e dicionario terá chave= partidos e valor= CLista
         dicionario.put("MG", new CDicionario());
         dicionario.put("SP", new CDicionario());
         dicionario.put("RJ", new CDicionario());
 
+        // Insere partidos como chave e cria CLista no valor
+        ((CDicionario) dicionario.get("MG")).put("Pao de queijo", new CLista());
+        ((CDicionario) dicionario.get("SP")).put("Pao com mortadela", new CLista());
+        ((CDicionario) dicionario.get("RJ")).put("Capirinha", new CLista());
 
-        ((CDicionario) dicionario.get("MG")).put("A", new CLista());
-        ((CDicionario) dicionario.get("SP")).put("B", new CLista());
-        ((CDicionario) dicionario.get("RJ")).put("C", new CLista());
+        // Insere na lista os nomes dos deputados
+        ((CLista)((CDicionario) dicionario.get("MG")).get("Pao de queijo")).add("NOME 1");
+        ((CLista)((CDicionario) dicionario.get("MG")).get("Pao de queijo")).add("NOME 2");
+        ((CLista)((CDicionario) dicionario.get("MG")).get("Pao de queijo")).add("NOME 3");
+        // Insere na lista os nomes dos deputados
+        ((CLista)((CDicionario) dicionario.get("SP")).get("Pao com mortadela")).add("NOME 4");
+        ((CLista)((CDicionario) dicionario.get("SP")).get("Pao com mortadela")).add("NOME 5");
+        ((CLista)((CDicionario) dicionario.get("SP")).get("Pao com mortadela")).add("NOME 6");
+        // Insere na lista os nomes dos deputados
+        ((CLista)((CDicionario) dicionario.get("RJ")).get("Capirinha")).add("NOME 7");
+        ((CLista)((CDicionario) dicionario.get("RJ")).get("Capirinha")).add("NOME 8");
+        ((CLista)((CDicionario) dicionario.get("RJ")).get("Capirinha")).add("NOME 9");
 
-        ((CLista)((CDicionario) dicionario.get("MG")).get("A")).add("NOME 1");
-        ((CLista)((CDicionario) dicionario.get("MG")).get("A")).add("NOME 2");
-        ((CLista)((CDicionario) dicionario.get("MG")).get("A")).add("NOME 3");
-        ((CLista)((CDicionario) dicionario.get("MG")).get("A")).add("teste 1");
-        ((CLista)((CDicionario) dicionario.get("MG")).get("A")).add("TESTE 2");
-        ((CLista)((CDicionario) dicionario.get("MG")).get("A")).add("TESTE 3");
+        // Ao executar: Comente as outras questões
 
-        ((CLista)((CDicionario) dicionario.get("SP")).get("B")).add("NOME 4");
-        ((CLista)((CDicionario) dicionario.get("SP")).get("B")).add("NOME 5");
-        ((CLista)((CDicionario) dicionario.get("SP")).get("B")).add("NOME 6");
-
-        ((CLista)((CDicionario) dicionario.get("RJ")).get("C")).add("NOME 7");
-        ((CLista)((CDicionario) dicionario.get("RJ")).get("C")).add("NOME 8");
-        ((CLista)((CDicionario) dicionario.get("RJ")).get("C")).add("NOME 9");
-
-
-
-        dicionario.printEstado("MG");
-        
+        // Questão 1
+        // Imprime estados, partidos e deputados
+        dicionario.printEstado(estados,0);
         ((CDicionario) dicionario.get("MG")).print();
-        ((CLista)(((CDicionario) dicionario.get("MG")).get("A"))).print();
+        ((CLista)(((CDicionario) dicionario.get("MG")).get("Pao de queijo"))).print();
 
-        dicionario.printEstado("SP");
+        dicionario.printEstado(estados,1);
         ((CDicionario) dicionario.get("SP")).print();
-        ((CLista)(((CDicionario) dicionario.get("SP")).get("B"))).print();
+        ((CLista)(((CDicionario) dicionario.get("SP")).get("Pao com mortadela"))).print();
 
-        dicionario.printEstado("RJ");
+        dicionario.printEstado(estados,2);
         ((CDicionario) dicionario.get("RJ")).print();
-        ((CLista)(((CDicionario) dicionario.get("RJ")).get("C"))).print();   
-        
+        ((CLista)(((CDicionario) dicionario.get("RJ")).get("Capirinha"))).print();
 
 
+        // Questao 2 - importa dicionario
+        CDicionario dic = new CDicionario();
+        dic.put(100, "Joao");                    
+        dicionario.importaDicionario(dic);
 
-
-
-
-
-
-        // for (int i = 0; i < 3; i++){
-        //     System.out.println("ESTADOS");
-        //     for (int x=0; x < 3; x++)
-        //         System.out.println("    PARTIDOS");
-        //             for(int z=0; z < 3; z++)
-        //                 System.out.println("        DEPUTADOS");
-        // }
-
+        // Questao 2 - retorna deputados
+        dicionario.retornaDeputados("Pao de queijo");
     }
 }
